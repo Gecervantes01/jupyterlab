@@ -109,7 +109,7 @@ namespace CommandIDs {
 
   export const togglePresentationMode: string =
     'application:toggle-presentation-mode';
-    
+
   export const toggleFullscreenMode: string =
     'application:toggle-fullscreen-mode';
 
@@ -439,17 +439,19 @@ const mainCommands: JupyterFrontEndPlugin<void> = {
         label: () => trans.__('Fullscreen Mode'),
         execute: () => {
           labShell.fullscreenMode = !labShell.fullscreenMode;
-          
-          if(labShell.fullscreenMode){
-            document.documentElement.requestFullscreen(); 
-            document.onfullscreenchange = ()=> {
-              !document.fullscreenElement ? labShell.fullscreenMode = false : null;
+
+          if (labShell.fullscreenMode) {
+            document.documentElement.requestFullscreen();
+            document.onfullscreenchange = () => {
+              !document.fullscreenElement
+                ? (labShell.fullscreenMode = false)
+                : null;
             };
           } else {
             document.exitFullscreen();
           }
         },
-        isToggled: () => labShell.fullscreenMode,
+        isToggled: () => labShell.fullscreenMode
       });
 
       commands.addCommand(CommandIDs.setMode, {
