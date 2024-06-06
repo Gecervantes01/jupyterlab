@@ -440,12 +440,10 @@ const mainCommands: JupyterFrontEndPlugin<void> = {
         execute: () => {
           labShell.fullscreenMode = !labShell.fullscreenMode;
 
-          if (labShell.fullscreenMode) {
+          if(labShell.fullscreenMode){
             document.documentElement.requestFullscreen();
-            document.onfullscreenchange = () => {
-              !document.fullscreenElement
-                ? (labShell.fullscreenMode = false)
-                : null;
+            document.onfullscreenchange = ()=> {
+              !document.fullscreenElement ? labShell.fullscreenMode = false : null;
             };
           } else {
             document.exitFullscreen();
